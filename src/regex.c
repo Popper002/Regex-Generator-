@@ -115,4 +115,7 @@ int strIsEmpty(char*str){
 }
 
 /*Deallocated the input string*/ 
-int erase_str(char* str); 
+int erase_str(char* str){
+	free(str);
+	return 0;
+}
