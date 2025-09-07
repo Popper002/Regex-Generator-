@@ -60,9 +60,26 @@ char* regexGenerator(int size, const char* notIncludeThis){
             chosen = regex_dict[index];
             valid = 1;
 
-            // Escludi simboli se sono in notIncludeThis
-            if(strstr(notIncludeThis, chosen) != NULL){
-                valid = 0;
+            // Escludi simboli se contengono caratteri in notIncludeThis
+            for(int j = 0; j < strlen(notIncludeThis); j++){
+                char charToExclude = notIncludeThis[j];
+                
+                // Controlla se il carattere è contenuto nel pattern regex
+                if((charToExclude >= 'a' && charToExclude <= 'z' && strcmp(chosen, "[a-z]") == 0) ||
+                   (charToExclude >= 'A' && charToExclude <= 'Z' && strcmp(chosen, "[A-Z]") == 0) ||
+                   (charToExclude >= '0' && charToExclude <= '9' && (strcmp(chosen, "[0-9]") == 0 || strcmp(chosen, "\\d") == 0)) ||
+                   (charToExclude == '+' && strcmp(chosen, "+") == 0) ||
+                   (charToExclude == '*' && strcmp(chosen, "*") == 0) ||
+                   (charToExclude == '?' && strcmp(chosen, "?") == 0) ||
+                   (charToExclude == '|' && strcmp(chosen, "|") == 0) ||
+                   (charToExclude == '(' && strcmp(chosen, "(") == 0) ||
+                   (charToExclude == ')' && strcmp(chosen, ")") == 0) ||
+                   (charToExclude == '^' && strcmp(chosen, "^") == 0) ||
+                   (charToExclude == '$' && strcmp(chosen, "$") == 0) ||
+                   (charToExclude == '.' && strcmp(chosen, ".") == 0)) {
+                    valid = 0;
+                    break;
+                }
             }
 
             // Evita simboli consecutivi vietati

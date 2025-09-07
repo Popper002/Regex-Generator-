@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -g -D MAC_OS
 DEST_LIB = lib
 DEST_BIN = bin
-RM_ALL_FILE = rm
+RM_ALL_FILE = rm -rf
 MAC = -D MAC_OS
 # Target principale per creare tutto
 all: libregex.a main
