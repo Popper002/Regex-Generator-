@@ -21,5 +21,7 @@ char* generateStrFromRegex(char* regex, int size, int repeatTheRegex);
 /*check is the input string is empty or not*/ 
 int strIsEmpty(char*str);
 
+char* concatenateMultipleStringNewRegex(int size, char* notIncludeThis);
+
 /*Deallocated the input string*/ 
 int erase_str(char* str); 
